@@ -16,7 +16,7 @@ namespace Lesson_6_1
         }
         public AccauntType Type { get; }
         private static int unicNomber;
-        public int Nomber { get; set; }
+        public int Nomber { get;}
         public BankAccount(decimal balance, AccauntType type)
         {
             this.balance = balance;
@@ -48,6 +48,10 @@ namespace Lesson_6_1
             }
             else { return false; }
         }
+        public override string ToString()
+        {
+            return $"Номер счета - {this.Nomber}\r\nБаланс - {this.Balance}\r\nТип счета - {this.Type}";
+        }
     }
     
     class Program
@@ -56,10 +60,10 @@ namespace Lesson_6_1
         {   //проверка
             BankAccount bank1 = new BankAccount(4444, AccauntType.Credit);
             BankAccount bank2 = new BankAccount(4444, AccauntType.Credit);
-            bank2.Nomber = 1;
             BankAccount bank3 = new BankAccount(2222, AccauntType.Credit);
             bool a = bank1 == bank2;
             Console.WriteLine(a);
+            Console.WriteLine(bank1.ToString());
         }
     }
 }
