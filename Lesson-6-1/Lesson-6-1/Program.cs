@@ -16,7 +16,7 @@ namespace Lesson_6_1
         }
         public AccauntType Type { get; }
         private static int unicNomber;
-        public int Nomber { get; }
+        public int Nomber { get; set; }
         public BankAccount(decimal balance, AccauntType type)
         {
             this.balance = balance;
@@ -28,13 +28,25 @@ namespace Lesson_6_1
             this.balance = this.balance + summ;
             accaunt.balance = accaunt.balance - summ;
         }
-        public static bool operator ==()
+        public static bool operator ==(BankAccount bank1, BankAccount bank2)
         {
-
+            if (bank1.Balance == bank2.Balance &&
+                bank1.Nomber == bank2.Nomber &&
+                bank1.Type == bank2.Type)
+            {
+                return true;
+            }
+            else { return false; }
         }
-        public static bool operator !=()
+        public static bool operator !=(BankAccount bank1, BankAccount bank2)
         {
-
+            if (bank1.Balance != bank2.Balance &&
+                bank1.Nomber != bank2.Nomber &&
+                bank1.Type != bank2.Type)
+            {
+                return true;
+            }
+            else { return false; }
         }
     }
     
@@ -43,9 +55,11 @@ namespace Lesson_6_1
         static void Main(string[] args)
         {   //проверка
             BankAccount bank1 = new BankAccount(4444, AccauntType.Credit);
-            BankAccount bank2 = new BankAccount(3333, AccauntType.Debit);
+            BankAccount bank2 = new BankAccount(4444, AccauntType.Credit);
+            bank2.Nomber = 1;
             BankAccount bank3 = new BankAccount(2222, AccauntType.Credit);
-           
+            bool a = bank1 == bank2;
+            Console.WriteLine(a);
         }
     }
 }
