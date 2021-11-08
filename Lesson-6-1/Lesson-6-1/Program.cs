@@ -64,6 +64,7 @@ namespace Lesson_6_1
             bool a = bank1 == bank2;
             Console.WriteLine(a);
             Console.WriteLine(bank1.ToString());
+            Console.WriteLine(bank3.ToString());
         }
     }
 }
