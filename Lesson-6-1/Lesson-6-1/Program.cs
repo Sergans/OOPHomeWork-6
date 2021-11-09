@@ -65,6 +65,8 @@ namespace Lesson_6_1
             Console.WriteLine(a);
             Console.WriteLine(bank1.ToString());
             Console.WriteLine(bank3.ToString());
+            var c =bank1.Equals(bank2);
+            Console.WriteLine(c);
         }
     }
 }
