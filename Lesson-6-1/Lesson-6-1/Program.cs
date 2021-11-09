@@ -52,6 +52,21 @@ namespace Lesson_6_1
         {
             return $"Номер счета - {this.Nomber}\r\nБаланс - {this.Balance}\r\nТип счета - {this.Type}";
         }
+
+        public override bool Equals(BankAccount bank)
+        {
+            if (ReferenceEquals(this, bank))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(bank, null))
+            {
+                return false;
+            }
+
+            throw new NotImplementedException();
+        }
     }
     
     class Program
@@ -65,6 +80,7 @@ namespace Lesson_6_1
             Console.WriteLine(a);
             Console.WriteLine(bank1.ToString());
             Console.WriteLine(bank3.ToString());
+            bank1 = bank2;
             var c =bank1.Equals(bank2);
             Console.WriteLine(c);
         }
