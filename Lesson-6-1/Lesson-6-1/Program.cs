@@ -16,7 +16,7 @@ namespace Lesson_6_1
         }
         public AccauntType Type { get; }
         private static int unicNomber;
-        public int Nomber { get;}
+        public int Nomber { get; set; }// set для проверки
         public BankAccount(decimal balance, AccauntType type)
         {
             this.balance = balance;
@@ -30,43 +30,34 @@ namespace Lesson_6_1
         }
         public static bool operator ==(BankAccount bank1, BankAccount bank2)
         {
-            if (bank1.Balance == bank2.Balance &&
-                bank1.Nomber == bank2.Nomber &&
-                bank1.Type == bank2.Type)
-            {
-                return true;
-            }
-            else { return false; }
+                return (bank1.Balance == bank2.Balance &&
+                        bank1.Nomber == bank2.Nomber &&
+                        bank1.Type == bank2.Type);
         }
         public static bool operator !=(BankAccount bank1, BankAccount bank2)
         {
-            if (bank1.Balance != bank2.Balance &&
-                bank1.Nomber != bank2.Nomber &&
-                bank1.Type != bank2.Type)
-            {
-                return true;
-            }
-            else { return false; }
+                return (bank1.Balance != bank2.Balance &&
+                        bank1.Nomber != bank2.Nomber &&
+                        bank1.Type != bank2.Type);
         }
+        public bool Equals(BankAccount obj)
+        {
+            return (this.Balance == obj.Balance &&
+                    this.Nomber == obj.Nomber &&
+                    this.Type == obj.Type);
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+
+        }
+
         public override string ToString()
         {
             return $"Номер счета - {this.Nomber}\r\nБаланс - {this.Balance}\r\nТип счета - {this.Type}";
         }
 
-        public override bool Equals(BankAccount bank)
-        {
-            if (ReferenceEquals(this, bank))
-            {
-                return true;
-            }
-
-            if (ReferenceEquals(bank, null))
-            {
-                return false;
-            }
-
-            throw new NotImplementedException();
-        }
+        
     }
     
     class Program
@@ -76,11 +67,13 @@ namespace Lesson_6_1
             BankAccount bank1 = new BankAccount(4444, AccauntType.Credit);
             BankAccount bank2 = new BankAccount(4444, AccauntType.Credit);
             BankAccount bank3 = new BankAccount(2222, AccauntType.Credit);
+            //bank2.Nomber = 1;// для проверки
             bool a = bank1 == bank2;
             Console.WriteLine(a);
             Console.WriteLine(bank1.ToString());
             Console.WriteLine(bank3.ToString());
-            bank1 = bank2;
+            Console.WriteLine(bank1.GetHashCode()); //43495525;
+            Console.WriteLine(bank2.GetHashCode()); //55915408;
             var c =bank1.Equals(bank2);
             Console.WriteLine(c);
         }
